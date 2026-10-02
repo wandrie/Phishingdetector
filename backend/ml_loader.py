@@ -1,7 +1,19 @@
 import os
 import json
 import joblib
-from config import settings
+
+try:
+    from config import settings
+except ImportError:
+    class settings:
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        MODEL_PATH = os.getenv("MODEL_PATH", os.path.join(BASE_DIR, "models", "model.joblib"))
+        ENCODER_PATH = os.getenv("ENCODER_PATH", os.path.join(BASE_DIR, "models", "label_encoder.joblib"))
+        FEATURES_JSON_PATH = os.getenv("FEATURES_JSON_PATH", os.path.join(BASE_DIR, "models", "features.json"))
+
+        @classmethod
+        def get(cls, key, default=None):
+            return getattr(cls, key, default)
 
 class MLModelContainer:
     def __init__(self):

@@ -4,7 +4,10 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     # Nama & Informasi Aplikasi
     APP_NAME: str = "Wandrie Phishing Detector API"
-    DEBUG: bool = True
+    DEBUG: bool = True # Ubah ke False untuk mode produksi
+
+    # Secret Key khusus Admin untuk operasi sensitif (Hapus DB/Log)
+    # ADMIN_API_KEY: str = "Isi dengan kunci rahasia Anda"  # Ganti dengan kunci rahasia yang aman
     
     # Resolusi Path Direktori Utama
     BACKEND_DIR: str = os.path.dirname(os.path.abspath(__file__))
@@ -15,7 +18,7 @@ class Settings(BaseSettings):
     
     # Path Aset Machine Learning
     MODEL_DIR: str = os.path.join(PROJECT_ROOT, "models")
-    MODEL_PATH: str = os.path.join(MODEL_DIR, "phishing_rf_model.pkl")
+    MODEL_PATH: str = os.path.join(MODEL_DIR, "phishing_lgbm_model.pkl")
     ENCODER_PATH: str = os.path.join(MODEL_DIR, "label_encoder.pkl")
     FEATURES_JSON_PATH: str = os.path.join(MODEL_DIR, "model_features.json")
 

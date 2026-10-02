@@ -3,7 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.1%2B-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-v0.100%2B-009688)
 ![Streamlit](https://img.shields.io/badge/Streamlit-v1.30%2B-FF4B4B)
-![Machine Learning](https://img.shields.io/badge/Model-Random%20Forest-success)
+![Machine Learning](https://img.shields.io/badge/Model-Light%20GBM-success)
 
 **Wandrie Phishing URL Detector** adalah sistem keamanan siber berbasis Machine Learning yang dirancang untuk menganalisis dan mendeteksi tautan (_URL_) phishing secara real-time. Sistem ini mengombinasikan _backend_ berbasis FastAPI untuk pemrosesan prediksi dan ekstraksi fitur, serta _frontend_ interaktif berbasis Streamlit.
 
@@ -37,7 +37,7 @@ Phishingdetector/
 │   ├── feature_names.pkl
 │   ├── label_encoder.pkl
 │   ├── model_features.json
-│   └── phishing_rf_model.pkl # Trained Random Forest Model
+│   └── phishing_lgbm_model.pkl # Trained LightGBM
 ├── .gitignore                # File pengecualian Git
 └── README.md                 # Dokumentasi proyek
 ```

@@ -327,7 +327,7 @@ st.markdown("""
         </div>
         <div class="system-badge-container">
             <span class="system-badge">Status Backend: <span class="status-active">● Active</span></span>
-            <span class="system-badge">Model: Random Forest v1.0</span>
+            <span class="system-badge">Model:  LightGBM v1.0</span>
             <span class="system-badge">Versi: v2.0 Enterprise</span>
         </div>
     </div>
@@ -606,7 +606,7 @@ with tab_about:
     with col_about2:
         st.info("""
         **Spesifikasi Teknis:**
-        - **Model ML:** Random Forest Classifier
+        - **Model ML:** LightGBM Classifier (Gradient Boosting) dengan akurasi > 96%
         - **Backend:** FastAPI (Python 3.11)
         - **Database:** SQLite3
         - **Frontend:** Streamlit Enterprise UI

@@ -4,7 +4,7 @@ from config import settings
 def get_db_connection():
     """Membuat koneksi ke database SQLite."""
     conn = sqlite3.connect(settings.DB_PATH)
-    conn.row_factory = sqlite3.Row  # Mengembalikan query dalam bentuk dictionary-like
+    conn.row_factory = sqlite3.Row
     return conn
 
 def init_db():
