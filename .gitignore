@@ -16,3 +16,8 @@ backend/phishing_logs.db
 # IDE & Editor Settings
 .vscode/
 .idea/
+
+# Environment Variables
+.env
+*.env
+!.env.example
