@@ -1,6 +1,6 @@
 # 🛡️ Wandrie Phishing URL Detector
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![Python](https://img.shields.io/badge/Python-3.1%2B-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-v0.100%2B-009688)
 ![Streamlit](https://img.shields.io/badge/Streamlit-v1.30%2B-FF4B4B)
 ![Machine Learning](https://img.shields.io/badge/Model-Random%20Forest-success)

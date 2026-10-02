@@ -19,13 +19,13 @@ except ImportError:
 
 st.set_page_config(
     page_title="Wandrie Phishing URL Detector", 
-    page_icon="🛡️️", 
+    page_icon="🛡", 
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
 st.markdown("""
-    <style>
+   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
     html, body, [class*="css"] {
@@ -33,7 +33,7 @@ st.markdown("""
         background-color: #F8FAFC;
     }
 
-    /* 1. SEMBUNYIKAN HEADER, FOOTER, DAN BOTTOM CONTAINER BAWAAN STREAMLIT */
+    /* SEMBUNYIKAN HEADER, FOOTER, DAN BOTTOM CONTAINER BAWAAN STREAMLIT */
     header[data-testid="stHeader"],
     div[data-testid="stHeader"],
     div[data-testid="stAppHeader"],
@@ -49,7 +49,7 @@ st.markdown("""
         margin: 0 !important;
     }
 
-    /* 2. PAKSA CONTAINER UTAMA HILANGKAN PADDING ATAS & BAWAH TOTAL */
+    /* HILANGKAN PADDING ATAS & BAWAH */
     .stAppViewContainer, 
     .stMain, 
     .main, 
@@ -63,13 +63,13 @@ st.markdown("""
     [data-testid="stMainBlockContainer"],
     .main .block-container {
         padding-top: 0.5rem !important;
-        padding-bottom: 0rem !important; /* Paksa hilangkan padding bawah */
+        padding-bottom: 0rem !important;
         margin-top: 0rem !important;
         margin-bottom: 0rem !important;
         max-width: 100% !important;
     }
 
-    /* 3. HEADER UTAMA APLIKASI */
+    /* HEADER UTAMA APLIKASI */
     .main-header {
         background: linear-gradient(135deg, #0A192F 0%, #1E293B 100%);
         padding: 0.9rem 1.4rem;
@@ -126,7 +126,7 @@ st.markdown("""
         font-weight: 600;
     }
 
-    /* Tab Styling */
+    /* TAB STYLING DESKTOP */
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
         background-color: #FFFFFF;
@@ -158,7 +158,7 @@ st.markdown("""
         background-color: #10B981 !important;
     }
 
-    /* Input & Button Styling */
+    /* INPUT & BUTTON STYLING */
     .stTextInput>div>div>input {
         border: 1.5px solid #CBD5E1 !important;
         border-radius: 10px !important;
@@ -185,7 +185,7 @@ st.markdown("""
         box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
     }
 
-    /* 4. FOOTER STYLING DENGAN MARGIN NEGATIF UNTUK MENETRALISIR SPASI STREAMLIT */
+    /* FOOTER STYLING DENGAN MARGIN NEGATIF */
     .custom-footer {
         background: linear-gradient(135deg, #0A192F 0%, #1E293B 100%);
         padding: 1rem 1.5rem;
@@ -193,7 +193,7 @@ st.markdown("""
         color: white;
         box-shadow: 0 6px 16px rgba(10, 25, 47, 0.12);
         margin-top: 2rem !important;
-        margin-bottom: -1rem !important; /* Margin negatif untuk menarik footer ke paling bawah */
+        margin-bottom: -1rem !important;
         border-top: 3px solid #10B981;
         display: flex;
         flex-direction: column;
@@ -217,7 +217,62 @@ st.markdown("""
         margin: 0;
         line-height: 1.3;
     }
-    </style>
+
+    /* RESPONSIVE DESIGN UNTUK HP & TABLET (PERBAIKAN KHUSUS MOBILE) */
+    @media (max-width: 768px) {
+        [data-testid="stMainBlockContainer"], .main .block-container {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+        }
+
+        .main-header {
+            padding: 0.8rem 1rem !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 8px !important;
+        }
+
+        .main-title {
+            font-size: 1.15rem !important;
+        }
+
+        .main-subtitle {
+            font-size: 0.75rem !important;
+        }
+
+        .system-badge-container {
+            gap: 4px !important;
+        }
+
+        .system-badge {
+            font-size: 0.65rem !important;
+            padding: 2px 6px !important;
+        }
+
+        /* MEMASATIKAN SEMUA TAB MUAT DALAM 1 BARIS PAS */
+        .stTabs [data-baseweb="tab-list"] {
+            padding: 4px !important;
+            gap: 2px !important;
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important; /* Paksa 4 kolom sejajar */
+            width: 100% !important;
+            overflow-x: hidden !important;
+        }
+
+        .stTabs [data-baseweb="tab"] {
+            padding: 6px 2px !important;
+            font-size: 0.7rem !important; /* Font disesuaikan agar muat sempurna */
+            justify-content: center !important;
+            text-align: center !important;
+            min-width: 0 !important;
+            width: 100% !important;
+        }
+
+        .stButton>button {
+            width: 100% !important;
+        }
+    }
+</style>
 """, unsafe_allow_html=True)
 
 # Load Model Features & Helper Function
@@ -278,12 +333,12 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Tab Navigation
+# Tab Navigation (Diringkas Agar Pas di Layar HP)
 
 tab_dashboard, tab_file_scan, tab_logs, tab_about = st.tabs([
-    "🔍 Analisis URL", 
-    "📁 Upload Dokumen (Scan URL Massal)",
-    "🚨 Log Phishing", 
+    "🔍 Analisis", 
+    "📁 Scan Massal",
+    "🚨 Log", 
     "ℹ️ Tentang"
 ])
 
@@ -292,12 +347,7 @@ tab_dashboard, tab_file_scan, tab_logs, tab_about = st.tabs([
 with tab_dashboard:
     col_left, col_right = st.columns([3, 2], gap="large")
 
-    # -------------------------------------------------------------
-    # KOLOM KIRI: Cara Penggunaan (Atas) & Form Input URL (Bawah)
-    # -------------------------------------------------------------
     with col_left:
-        
-        # 2. Form Input URL tepat di Bawah Cara Penggunaan
         st.subheader("Periksa Keamanan URL")
         st.caption("Masukkan alamat web yang ingin dianalisis secara lengkap oleh model Machine Learning.")
 
@@ -309,9 +359,6 @@ with tab_dashboard:
 
         analyze_btn = st.button("🚀 Analisis Tautan", use_container_width=True)
 
-    # -------------------------------------------------------------
-    # KOLOM KANAN: Tempat Menampilkan Hasil Prediksi
-    # -------------------------------------------------------------
     with col_right:
         st.subheader("📊 Hasil Prediksi")
 
@@ -343,6 +390,7 @@ with tab_dashboard:
                 st.warning("⚠️ Masukkan URL terlebih dahulu sebelum menganalisis.")
         else:
             st.caption("Belum ada analisis yang dijalankan. Masukkan URL pada kolom di sebelah kiri dan klik **🚀 Analisis Tautan** untuk melihat hasil prediksi di sini.")
+
 # TAB 2: UPLOAD DOKUMEN (CSV, EXCEL, WORD)
 
 with tab_file_scan:
@@ -360,7 +408,6 @@ with tab_file_scan:
         if st.button("⚡ Pindai Seluruh Tautan dalam Dokumen", type="primary"):
             raw_extracted_urls = []
             
-            # Fungsi Membaca File CSV / Excel
             if file_ext in ["csv", "xlsx", "xls"]:
                 try:
                     if file_ext == "csv":
@@ -376,7 +423,6 @@ with tab_file_scan:
                 except Exception as e:
                     st.error(f"Gagal membaca file spreadsheet: {e}")
 
-            # Fungsi Membaca File Word (.docx)
             elif file_ext == "docx":
                 if docx is None:
                     st.error("Library `python-docx` belum terpasang. Jalankan `pip install python-docx`.")
@@ -399,7 +445,6 @@ with tab_file_scan:
                     except Exception as e:
                         st.error(f"Gagal membaca dokumen Word: {e}")
 
-            # Fungsi Cleaning Tautan (Penghilangan Trailing Symbols & Duplikat)
             cleaned_urls = []
             for u in raw_extracted_urls:
                 u_clean = u.strip().rstrip('/.,;:()')
@@ -408,7 +453,6 @@ with tab_file_scan:
             
             urls_to_scan = list(dict.fromkeys(cleaned_urls))
 
-            # Fungsi Proses Analisis Massal
             if urls_to_scan:
                 st.info(f"🔍 Ditemukan **{len(urls_to_scan)}** tautan unik dalam dokumen. Memulai pemindaian...")
                 
@@ -434,7 +478,6 @@ with tab_file_scan:
                 
                 st.success("🎉 Pemindaian dokumen selesai!")
                 
-                # Ringkasan Metrik
                 m1, m2, m3 = st.columns(3)
                 total_links = len(df_results)
                 phish_count = len(df_results[df_results["Is Phishing"] == True])
@@ -446,14 +489,12 @@ with tab_file_scan:
 
                 st.divider()
 
-                # Fungsi Pewarnaan Tabel Sesuai Status "Is Phishing"
                 def highlight_phishing_rows(row):
                     is_p = row.get("Is Phishing", False)
                     if is_p:
                         return ['background-color: #FEE2E2; color: #991B1B; font-weight: bold;'] * len(row)
                     return ['background-color: #ECFDF5; color: #065F46;'] * len(row)
 
-                # Tampilkan Tabel Hasil
                 st.subheader("📋 Hasil Pemindaian Dokumen")
                 
                 st.dataframe(
@@ -469,7 +510,6 @@ with tab_file_scan:
                     }
                 )
 
-                # Tombol Download CSV Hasil Analisis
                 csv_file = df_results.drop(columns=["Is Phishing"]).to_csv(index=False).encode('utf-8')
                 st.download_button(
                     label="📥 Unduh Hasil Laporan Pemindaian Dokumen (CSV)",
